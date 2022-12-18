@@ -9,4 +9,14 @@ const flightSchema = new Schema({
     departs: Date
 });
 
+// const Flight = new mongoose.model("Flight", flightSchema)
+
+// const data = new Flight({
+//     airline: 'american',
+//     airport: 'DEN',
+//     flightNo: 104,
+//     departs: new Date
+// })
+// data.save()
+
 module.exports = mongoose.model("Flight", flightSchema);
