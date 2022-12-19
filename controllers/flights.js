@@ -16,11 +16,18 @@ function index(req, res) {
 }
 
 function show(req, res) {
-    Flight.findById(req.params.id, function(err, flight) {
-        Ticket.find({flight: flight._id}, function(err, tickets) {
-            res.render('flights/show', { title: 'Flight Detail', flight, tickets })
-        });
-    });
+    Flight.findById(req.params.id)
+        .populate('list')
+        .exec(function (err, flight) {
+            // Ticket.find({}).where('_id').nin(flight.list) <-- Mongoose query builder
+            // Native MongoDB approach
+            Destination.find({}, 
+                function (err, destinations) {
+                    console.log("destinations", destinations);
+                    res.render('flights/show', { title: 'Flight Detail', flight, destinations })
+                }
+            )
+        })
 }
 
 function newFlight(req, res) {
