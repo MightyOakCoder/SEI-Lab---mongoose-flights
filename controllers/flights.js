@@ -1,4 +1,4 @@
-const Destination = require("../models/destination");
+const Destination = require("../models/ticket");
 const Flight = require("../models/flight");
 const Ticket = require("../models/flight")
 

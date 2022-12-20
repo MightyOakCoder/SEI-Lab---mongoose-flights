@@ -2,18 +2,34 @@ const mongoose = require('mongoose');
 // optional shortcut to the mongoose.Schema class
 const Schema = mongoose.Schema;
 
-const ticketSchema = new Schema({
-    seat: {type: String, match: /[A-F][1-9]\d?/},
-    price: Number,
-    flight: [{ type: Schema.Types.ObjectId, ref: "Flight" }],
+const destinationSchema = new Schema({
+    airport: {
+        type: String,
+        enum: ['AUS', 'DFW', 'DEN', 'LAX', 'SAN']
+    },
+    arrival: {
+        type: Date
+    }
 })
 
 const flightSchema = new Schema({
-    airline: String,
-    airport: String,
-    flightNo: Number,
-    departs: Date,
-    list: [{ type: Schema.Types.ObjectId, ref: "Destination" }]
+    airline: {
+        type: String,
+        enum: ['American', 'Southwest', 'United']
+    },
+    airport: {
+        type: String,
+        enum: ['AUS', 'DFW', 'DEN', 'LAX', 'SAN']
+    },
+    flightNo: {
+        type: Number,
+        min: 10,
+        max: 9999
+    }, 
+    departs: {
+        type: Date
+    },
+    destinations: [destinationSchema]
 });
 
 module.exports = mongoose.model("Flight", flightSchema);

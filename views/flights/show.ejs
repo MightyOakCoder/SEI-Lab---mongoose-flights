@@ -19,15 +19,15 @@
         </div>
         
         <!-- start list list -->
-        <div>Destination List:</div>
+        <!-- <div>Destination List:</div>
         <ul>
             <%- flight.list.map(d =>
             `<li>${d.destination} <small>${d.airport} ${d.arrival.toLocaleDateString()}</small></li>`
             ).join('') %>
-        </ul>
+        </ul> -->
         <!-- end list list -->
 </section>
-<!-- add to list form below this comment -->
+<!-- add to list form below this comment
 <form id="add-dest-to-list" action="/flights/<%= flight._id %>/destinations" method="POST">
   <select name="destinationId">
     <%- destinations.map(d =>
@@ -47,7 +47,7 @@
   <label>Flight:</label>
   <input { type: Schema.Types.ObjectId, ref: "Flight" } >
   </select>
-  <input type="submit" value="Add Destination">
+  <input type="submit" value="New Ticket">
 </form>
 
-    <%- include('../partials/footer') %>
+    <%- include('../partials/footer') %> -->
